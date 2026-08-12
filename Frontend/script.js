@@ -1,4 +1,4 @@
-  const API_URL = 'https://mindscore-ai-1-jv7o.onrender.com';
+  const API_URL = 'https://mindscore-ai-1-jv7o.onrender.com/predict';
   const form = document.getElementById('predict-form');
   const submitBtn = document.getElementById('submit-btn');
   const errorBox = document.getElementById('error-box');
