@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signal — Digital Wellbeing Check</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="float-layer" id="float-layer" aria-hidden="true"></div>
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">✨ Signal · Digital Wellbeing Check</div>
+    <h1>How's the <em>balance</em>,<br>really? 🌙💫</h1>
+    <p class="sub">Take a breath, fill this in honestly 🍃 — a snapshot of screen time, sleep, and study rhythm is all it takes. Small habits tell a big story. 📖💛</p>
+  </header>
+
+  <div class="grid">
+
+    <!-- FORM -->
+    <div class="card">
+      <form id="predict-form">
+
+        <fieldset>
+          <p class="section-label">🧑‍🎓 01 · About you</p>
+          <div class="field-row">
+            <div>
+              <label for="Age">🎂 Age</label>
+              <input type="number" id="Age" min="11" max="100" step="1" placeholder="21" required>
+            </div>
+            <div>
+              <label for="Gender">🧬 Gender</label>
+              <select id="Gender" required>
+                <option value="" disabled selected>Select</option>
+                <option>Male</option>
+                <option>Female</option>
+              </select>
+            </div>
+          </div>
+          <div class="field-row">
+            <div>
+              <label for="Country">🌍 Country</label>
+              <input type="text" id="Country" placeholder="India" required>
+            </div>
+            <div>
+              <label for="Academic_Level">🎓 Academic level</label>
+              <select id="Academic_Level" required>
+                <option value="" disabled selected>Select</option>
+                <option>High School</option>
+                <option>Undergraduate</option>
+                <option>Graduate</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <p class="section-label">📱 02 · Digital habits</p>
+          <div class="field-row">
+            <div>
+              <label for="Most_Used_Platform">📲 Most used platform</label>
+              <select id="Most_Used_Platform" required>
+                <option value="" disabled selected>Select</option>
+                <option>Facebook</option>
+                <option>Instagram</option>
+                <option>Twitter</option>
+                <option>LinkedIn</option>
+                <option>Snapchat</option>
+                <option>YouTube</option>
+                <option>TicTok</option>
+                <option>LINE</option>
+                <option>KakaoTalk</option>
+                <option>VKontakte</option>
+                <option>WhatsAPP</option>
+                <option>WeChat</option>
+              </select>
+            </div>
+            <div>
+              <label for="Purpose_Of_Use">🎯 Primary purpose</label>
+              <select id="Purpose_Of_Use" required>
+                <option value="" disabled selected>Select</option>
+                <option>Networking</option>
+                <option>Education</option>
+                <option>Entertainment</option>
+                <option>News</option>
+              </select>
+            </div>
+          </div>
+          <div class="field-row">
+            <div>
+              <label for="Avg_Daily_Usage_Hours">⏳ Avg. daily usage (hrs)</label>
+              <input type="number" id="Avg_Daily_Usage_Hours" min="0.1" max="24" step="0.1" placeholder="4.5" required>
+            </div>
+            <div>
+              <label for="Daily_Unlocks">🔓 Daily phone unlocks</label>
+              <input type="number" id="Daily_Unlocks" min="1" step="1" placeholder="60" required>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <p class="section-label">🌿 03 · Lifestyle</p>
+          <div class="field-row">
+            <div>
+              <label for="Study_Hours">📚 Study hours / day</label>
+              <input type="number" id="Study_Hours" min="0.1" max="24" step="0.1" placeholder="3" required>
+            </div>
+            <div>
+              <label for="Physical_Activity_Hours">🏃 Physical activity (hrs)</label>
+              <input type="number" id="Physical_Activity_Hours" min="0.1" max="24" step="0.1" placeholder="1" required>
+            </div>
+          </div>
+          <div class="field-row">
+            <div>
+              <label for="Sleep_Hours_Per_Night">😴 Sleep / night (hrs)</label>
+              <input type="number" id="Sleep_Hours_Per_Night" min="0.1" max="24" step="0.1" placeholder="7" required>
+            </div>
+            <div>
+              <label for="Stress_Level">🔥 Stress level</label>
+              <select id="Stress_Level" required>
+                <option value="" disabled selected>Select</option>
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+                <option>Very High</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="submit-btn" id="submit-btn">✨ Run prediction ✨</button>
+        <div class="error-box" id="error-box"></div>
+      </form>
+    </div>
+
+    <!-- RESULT -->
+    <div class="card result-card">
+      <p class="section-label">🔮 Result</p>
+
+      <div id="state-placeholder" class="placeholder">
+        <span class="emoji-hero">🌸</span>
+        <span class="big">Nothing scored yet</span>
+        Fill in the form and hit predict — your wellbeing snapshot will bloom right here. 🌷
+      </div>
+
+      <div id="state-loading" class="result-state" style="display:none;">
+        <div class="spin"></div>
+        <p class="hint">🧠 Crunching the numbers, hang tight…</p>
+      </div>
+
+      <div id="state-result" class="result-state" style="display:none;">
+        <div class="gauge-wrap">
+          <svg class="gauge" viewBox="0 0 200 200">
+            <circle class="gauge-track" cx="100" cy="100" r="90"></circle>
+            <circle class="gauge-fill" id="gauge-fill" cx="100" cy="100" r="90"></circle>
+          </svg>
+          <div class="gauge-center">
+            <div class="gauge-number" id="score-number">–</div>
+            <div class="gauge-caption">✨ wellbeing score /10</div>
+          </div>
+        </div>
+        <div class="result-tag" id="result-tag" style="color:var(--teal);border-color:rgba(94,234,212,0.35);">Balanced</div>
+        <p class="result-desc" id="result-desc"></p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
